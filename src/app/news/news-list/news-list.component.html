@@ -1,0 +1,11 @@
+<mat-card class="mb-4" [routerLink]="['/news',newsObj.title]" (click)="onNewsClick(newsObj)">
+   
+    <mat-card-header>
+        <mat-card-title>{{ newsObj.title }}</mat-card-title>
+        <mat-card-subtitle>{{ newsObj.author || 'Unknown' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>{{ newsObj.description | slice:0:100 }}</p> <!-- Preview description -->
+    </mat-card-content>
+</mat-card>

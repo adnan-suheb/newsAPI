@@ -1,0 +1,36 @@
+<div class="row mt-4">
+    <div class="col-md-6 search">
+        <mat-form-field appearance="fill">
+            <mat-label>
+                Search...
+            </mat-label>
+            <input type="text" matInput (keyup)="onSearch($event)">
+            <mat-icon style="cursor: pointer;" matSuffix>search</mat-icon>
+        </mat-form-field>
+
+    </div>
+    <div class="col-md-6 col-sm-12 search">
+        <mat-form-field class="datePicker" appearance="fill">
+            <input matInput [matDatepicker]="startPicker" placeholder="Start Date" [(ngModel)]="startDate"
+                (dateChange)="onDateChange()" />
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="datePicker" appearance="fill">
+            <input matInput [matDatepicker]="endPicker" placeholder="End Date" [(ngModel)]="endDate"
+                (dateChange)="onDateChange()" />
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div>
+<div class="row my-5">
+    <div class="col-md-4">
+        <app-news-list [newsObj]="news"
+            *ngFor="let news of newsArr | query:searchVal | dateRange:startDate:endDate "></app-news-list>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
